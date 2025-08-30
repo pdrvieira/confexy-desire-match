@@ -1,11 +1,22 @@
 import { Button } from "@/components/ui/button";
-import { Download, Star, Shield, Heart } from "lucide-react";
-import confexylcon from "@/assets/confexy-icon.jpg";
+import { Star, Shield, Heart } from "lucide-react";
+import icone1 from "@/assets/realassets/icone1.png";
+
+// Simple Google Play icon as SVG component
+const GooglePlayIcon = ({ className }: { className?: string }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+  </svg>
+);
 
 const features = [
   { icon: Shield, text: "100% Privado" },
-  { icon: Heart, text: "Para Casais" },
-  { icon: Star, text: "Fácil de Usar" }
+  { icon: Star, text: "Fácil de Usar" },
+  { icon: Heart, text: "Para Todos" }
 ];
 
 const FinalCTASection = () => {
@@ -22,9 +33,9 @@ const FinalCTASection = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-glow rounded-3xl blur-2xl opacity-50 animate-glow-pulse" />
               <img 
-                src={confexylcon} 
+                src={icone1} 
                 alt="Confexy Icon" 
-                className="relative z-10 w-24 h-24 rounded-2xl shadow-elegant hover:scale-110 transition-transform duration-300"
+                className="relative z-10 w-32 h-32 lg:w-36 lg:h-36 rounded-2xl shadow-elegant"
               />
             </div>
           </div>
@@ -35,7 +46,7 @@ const FinalCTASection = () => {
               Crie novos <span className="text-primary-glow">matches</span>!
             </h2>
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Baixe o Confexy e descubra o que conecta vocês de verdade.
+              Baixe o Confexy agora e descubra desejos em comum.
             </p>
           </div>
           
@@ -44,7 +55,7 @@ const FinalCTASection = () => {
             {features.map((feature, index) => (
               <div 
                 key={index}
-                className="flex items-center gap-3 px-6 py-3 bg-card/50 rounded-full border border-primary/20 backdrop-blur-glass hover:border-primary/40 transition-colors"
+                className="flex items-center gap-3 px-6 py-3 bg-card/50 rounded-full border border-primary/20 backdrop-blur-glass hover:scale-105 transition-transform duration-300"
               >
                 <feature.icon className="h-5 w-5 text-primary" />
                 <span className="text-foreground font-medium">{feature.text}</span>
@@ -54,21 +65,21 @@ const FinalCTASection = () => {
           
           {/* CTA Button */}
           <div className="animate-slide-up" style={{ animationDelay: '0.6s' }}>
-            <Button 
-              size="lg"
-              className="bg-primary hover:bg-primary-glow text-primary-foreground px-12 py-8 text-xl font-bold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105 mb-8"
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.confexy"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Download className="mr-3 h-6 w-6" />
-              Baixar na Play Store
-            </Button>
+              <Button 
+                size="lg"
+                className="bg-primary hover:bg-primary-glow text-primary-foreground px-12 py-8 text-xl font-bold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105 mb-8"
+              >
+                <GooglePlayIcon className="mr-3 h-7 w-7" />
+                Baixe agora na Play Store
+              </Button>
+            </a>
             
-            <div className="flex justify-center">
-              <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                alt="Disponível no Google Play" 
-                className="h-16 opacity-80 hover:opacity-100 transition-opacity cursor-pointer hover:scale-105 transition-transform duration-300"
-              />
-            </div>
+
           </div>
           
           {/* Bottom Text */}

@@ -1,43 +1,67 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import screenshot1 from "@/assets/realassets/screenshot-1.png";
+import screenshot2 from "@/assets/realassets/screenshot-2.png";
+import screenshot3 from "@/assets/realassets/screenshot-3.png";
+import screenshot4 from "@/assets/realassets/screenshot-4.png";
+import screenshot5 from "@/assets/realassets/screenshot-5.png";
 
-// Simulated screenshot data - in a real app, these would be the actual screenshots
+// Actual screenshot data with accurate descriptions and dynamic badges
 const screenshots = [
   {
     id: 1,
-    title: "Interface Elegante",
-    description: "Design moderno com glassmorphism e cores suaves",
-    image: "https://images.unsplash.com/photo-1522252234503-e356532cafd5?w=300&h=600&fit=crop&crop=faces,center"
+    title: "Descubra Desejos em Comum",
+    description: "Navegue pelas cartas de fantasias e faça suas escolhas. Quando ambos selecionam a mesma opção, vocês descobrem juntos suas afinidades íntimas.",
+    badge: "Swipe & Match",
+    image: screenshot1
   },
   {
     id: 2,
-    title: "Conecte com Amigos",
-    description: "Adicione pessoas próximas de forma segura",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=300&h=600&fit=crop&crop=faces,center"
+    title: "Jogue com Amigos",
+    description: "Conecte-se com seus amigos próximos de forma segura. Adicione contatos e explore juntos um mundo de descobertas divertidas e privadas.",
+    badge: "Social & Seguro",
+    image: screenshot2
   },
   {
     id: 3,
-    title: "Sistema de Match",
-    description: "Descubra afinidades quando ambos escolhem igual",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=600&fit=crop&crop=faces,center"
+    title: "Privacidade Garantida",
+    description: "Suas escolhas permanecem completamente privadas até que haja um match mútuo. Ninguém vê suas preferências sem o seu consentimento.",
+    badge: "100% Privado",
+    image: screenshot3
   },
   {
     id: 4,
-    title: "Cartas Íntimas",
-    description: "Explore desejos através de cartas divertidas",
-    image: "https://images.unsplash.com/photo-1522252234503-e356532cafd5?w=300&h=600&fit=crop&crop=center"
+    title: "Dê Match e Comemore",
+    description: "Quando vocês dois escolhem a mesma fantasia, o Confexy revela o match! Celebrem juntos essa descoberta especial e íntima.",
+    badge: "Match Revelado",
+    image: screenshot4
   },
   {
     id: 5,
-    title: "Privacidade Total",
-    description: "Suas escolhas ficam sempre protegidas",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=300&h=600&fit=crop&crop=center"
+    title: "Crie Novos Matches",
+    description: "Continue explorando e descobrindo novas conexões. Baixe o Confexy e transforme curiosidades em momentos especiais de cumplicidade.",
+    badge: "Disponível Agora",
+    image: screenshot5
   }
 ];
 
 const ScreenshotsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
@@ -51,6 +75,10 @@ const ScreenshotsSection = () => {
     );
   };
 
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <section className="py-24 bg-background relative overflow-hidden">
       {/* Background Pattern */}
@@ -59,9 +87,9 @@ const ScreenshotsSection = () => {
         <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-primary-glow rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-slide-up">
+        <div className="text-center mb-20 animate-slide-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Veja o <span className="text-primary">Confexy</span> em ação
           </h2>
@@ -70,96 +98,109 @@ const ScreenshotsSection = () => {
           </p>
         </div>
         
-        {/* Screenshots Gallery */}
-        <div className="max-w-6xl mx-auto">
-          {/* Mobile Carousel */}
-          <div className="md:hidden">
-            <div className="relative">
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-glow rounded-3xl blur-xl opacity-30" />
-                  <div className="relative bg-gradient-card p-6 rounded-3xl border border-primary/20 backdrop-blur-glass">
-                    <img 
-                      src={screenshots[currentIndex].image}
-                      alt={screenshots[currentIndex].title}
-                      className="w-64 h-auto rounded-2xl shadow-card mx-auto"
-                    />
-                  </div>
-                </div>
-              </div>
+        {/* Modern Carousel */}
+        <div className="max-w-5xl mx-auto">
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+          >
+            {/* Main Carousel Container */}
+            <div className="relative h-[600px] lg:h-[700px] overflow-hidden rounded-3xl bg-gradient-card border border-primary/20 backdrop-blur-glass">
               
-              <div className="text-center mb-6">
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {screenshots[currentIndex].title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {screenshots[currentIndex].description}
-                </p>
-              </div>
-              
-              <div className="flex justify-center gap-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={prevSlide}
-                  className="border-primary/30 text-foreground hover:bg-primary/10"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={nextSlide}  
-                  className="border-primary/30 text-foreground hover:bg-primary/10"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
-          
-          {/* Desktop Grid */}
-          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-8">
-            {screenshots.map((screenshot, index) => (
-              <div 
-                key={screenshot.id}
-                className="group animate-fade-in hover:scale-105 transition-all duration-500"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-glow rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
-                  <div className="relative bg-gradient-card p-4 rounded-2xl border border-primary/20 backdrop-blur-glass group-hover:border-primary/40 transition-colors">
-                    <img 
-                      src={screenshot.image}
-                      alt={screenshot.title}
-                      className="w-full h-auto rounded-xl shadow-card"
-                    />
-                    
-                    <div className="mt-4 text-center">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">
-                        {screenshot.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">
-                        {screenshot.description}
-                      </p>
+              {/* Slides */}
+              <div className="relative h-full">
+                {screenshots.map((screenshot, index) => (
+                  <div
+                    key={screenshot.id}
+                    className={`absolute inset-0 transition-all duration-700 ease-out transform ${
+                      index === currentIndex 
+                        ? 'opacity-100 scale-100 translate-x-0' 
+                        : index < currentIndex 
+                          ? 'opacity-0 scale-95 -translate-x-full' 
+                          : 'opacity-0 scale-95 translate-x-full'
+                    }`}
+                  >
+                    <div className="flex flex-col lg:flex-row h-full items-center justify-center gap-8 lg:gap-16 p-8 lg:p-16">
+                      
+                      {/* Screenshot Image */}
+                      <div className="relative flex-shrink-0 group">
+                        <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-2xl opacity-50" />
+                        <div className="relative border-2 border-primary/30 hover:border-primary-glow rounded-2xl transition-colors duration-500 overflow-hidden">
+                          <img
+                            src={screenshot.image}
+                            alt={screenshot.title}
+                            className="relative z-10 w-64 lg:w-80 xl:w-96 h-auto shadow-2xl"
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="flex-1 text-center lg:text-left space-y-6 max-w-lg">
+                        <div className="space-y-4">
+                          <h3 className="text-3xl lg:text-4xl font-bold text-foreground">
+                            {screenshot.title}
+                          </h3>
+                          <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
+                            {screenshot.description}
+                          </p>
+                        </div>
+                        
+                        {/* Dynamic Feature Badge */}
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20 hover:bg-primary/15 transition-colors duration-300">
+                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                          <span className="text-primary font-medium text-sm">
+                            {screenshot.badge}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 lg:left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+              >
+                <ChevronLeft className="h-6 w-6 text-white group-hover:text-primary transition-colors" />
+              </button>
+              
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 lg:right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+              >
+                <ChevronRight className="h-6 w-6 text-white group-hover:text-primary transition-colors" />
+              </button>
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-3 mt-8">
+              {screenshots.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentIndex 
+                      ? 'bg-primary scale-125' 
+                      : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Progress Bar */}
+            <div className="mt-6 w-full bg-white/10 rounded-full h-1 overflow-hidden">
+              <div 
+                className="h-full bg-gradient-to-r from-primary to-primary-glow transition-all duration-300 ease-out"
+                style={{ width: `${((currentIndex + 1) / screenshots.length) * 100}%` }}
+              />
+            </div>
           </div>
         </div>
         
-        {/* Bottom CTA */}
-        <div className="text-center mt-16 animate-slide-up" style={{ animationDelay: '0.8s' }}>
-          <Button 
-            size="lg"
-            className="bg-primary hover:bg-primary-glow text-primary-foreground px-8 py-6 text-lg font-semibold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105"
-          >
-            <Play className="mr-2 h-5 w-5" />
-            Experimentar Agora
-          </Button>
-        </div>
+        
       </div>
     </section>
   );

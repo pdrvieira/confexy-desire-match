@@ -1,6 +1,6 @@
 import { Heart, Shield, Users, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import connectionIllustration from "@/assets/connection-illustration.jpg";
+import featureGraphic from "@/assets/realassets/feature-graphic-1024x500.png";
 
 const benefits = [
   {
@@ -70,17 +70,7 @@ const BenefitsSection = () => {
           ))}
         </div>
         
-        {/* Visual Element */}
-        <div className="flex justify-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <div className="relative max-w-lg">
-            <div className="absolute inset-0 bg-gradient-glow rounded-3xl blur-2xl opacity-30" />
-            <img 
-              src={connectionIllustration} 
-              alt="Conexão íntima e privada" 
-              className="relative z-10 rounded-3xl shadow-card hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-        </div>
+
       </div>
     </section>
   );
