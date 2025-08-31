@@ -80,33 +80,33 @@ const ScreenshotsSection = () => {
   };
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-24 bg-background relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 left-10 w-72 h-72 bg-primary rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-primary-glow rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute top-1/4 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-primary rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-primary-glow rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
       </div>
       
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-20 animate-slide-up">
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-slide-up">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 sm:mb-6">
             Veja o <span className="text-primary">Confexy</span> em ação
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-xl lg:max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
             Uma interface intuitiva e elegante para explorar conexões de forma natural e divertida.
           </p>
         </div>
         
         {/* Modern Carousel */}
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-full sm:max-w-4xl lg:max-w-5xl mx-auto">
           <div 
             className="relative"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
           >
             {/* Main Carousel Container */}
-            <div className="relative h-[600px] lg:h-[700px] overflow-hidden rounded-3xl bg-gradient-card border border-primary/20 backdrop-blur-glass">
+            <div className="relative h-[600px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-card border border-primary/20 backdrop-blur-glass">
               
               {/* Slides */}
               <div className="relative h-full">
@@ -121,35 +121,35 @@ const ScreenshotsSection = () => {
                           : 'opacity-0 scale-95 translate-x-full'
                     }`}
                   >
-                    <div className="flex flex-col lg:flex-row h-full items-center justify-center gap-8 lg:gap-16 p-8 lg:p-16">
+                    <div className="flex flex-col lg:flex-row h-full items-center justify-center gap-6 sm:gap-8 lg:gap-16 p-4 sm:p-6 lg:p-12 xl:p-16">
                       
                       {/* Screenshot Image */}
-                      <div className="relative flex-shrink-0 group">
-                        <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-2xl opacity-50" />
-                        <div className="relative border-2 border-primary/30 hover:border-primary-glow rounded-2xl transition-colors duration-500 overflow-hidden">
+                      <div className="relative flex-shrink-0 group order-1 lg:order-1">
+                        <div className="absolute inset-0 bg-primary/20 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-50" />
+                        <div className="relative border-2 border-primary/30 hover:border-primary-glow rounded-xl sm:rounded-2xl transition-colors duration-500 overflow-hidden">
                           <img
                             src={screenshot.image}
                             alt={screenshot.title}
-                            className="relative z-10 w-64 lg:w-80 xl:w-96 h-auto shadow-2xl"
+                            className="relative z-10 w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-auto shadow-xl sm:shadow-2xl"
                           />
                         </div>
                       </div>
                       
                       {/* Content */}
-                      <div className="flex-1 text-center lg:text-left space-y-6 max-w-lg">
-                        <div className="space-y-4">
-                          <h3 className="text-3xl lg:text-4xl font-bold text-foreground">
+                      <div className="flex-1 text-center lg:text-left space-y-4 sm:space-y-6 max-w-sm sm:max-w-md lg:max-w-lg order-2 lg:order-2">
+                        <div className="space-y-3 sm:space-y-4">
+                          <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-foreground">
                             {screenshot.title}
                           </h3>
-                          <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
+                          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground leading-relaxed px-2 sm:px-0">
                             {screenshot.description}
                           </p>
                         </div>
                         
                         {/* Dynamic Feature Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20 hover:bg-primary/15 transition-colors duration-300">
-                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                          <span className="text-primary font-medium text-sm">
+                        <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 rounded-full border border-primary/20 hover:bg-primary/15 transition-colors duration-300">
+                          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-pulse" />
+                          <span className="text-primary font-medium text-xs sm:text-sm">
                             {screenshot.badge}
                           </span>
                         </div>

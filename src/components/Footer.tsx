@@ -2,9 +2,9 @@ import { ExternalLink } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-background border-t border-primary/10 py-12">
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-background border-t border-primary/10 py-8 sm:py-10 lg:py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           
           {/* Brand Section */}
           <div className="space-y-4">
@@ -110,13 +110,13 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-12 pt-8 border-t border-primary/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
+        <div className="mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8 border-t border-primary/10">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+            <p className="text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
               © 2025 Confexy. Todos os direitos reservados.
             </p>
-            <div className="flex items-center gap-2 px-4 py-2 bg-primary/5 rounded-full border border-primary/10">
-              <div className="w-2 h-2 bg-primary rounded-full" />
+            <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/5 rounded-full border border-primary/10">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full" />
               <span className="text-xs text-primary font-medium">
                 +18 - Conteúdo adulto
               </span>
