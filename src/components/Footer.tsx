@@ -102,9 +102,12 @@ const Footer = () => {
               <p className="text-sm text-muted-foreground">
                 Para suporte e dúvidas:
               </p>
-              <p className="text-sm text-primary font-medium">
-                contato@confexy.com.br
-              </p>
+              <a 
+                href="mailto:confexybr@gmail.com"
+                className="text-sm text-primary hover:text-primary-glow font-medium transition-colors inline-block"
+              >
+                confexybr@gmail.com
+              </a>
             </div>
           </div>
         </div>

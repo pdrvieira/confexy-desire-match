@@ -1,17 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Star, Shield, Heart } from "lucide-react";
+import { Star, Shield, Heart, TestTube2 } from "lucide-react";
 import icone1 from "@/assets/realassets/icone1.png";
+import BetaSignupDialog from "@/components/BetaSignupDialog";
 
-// Simple Google Play icon as SVG component
-const GooglePlayIcon = ({ className }: { className?: string }) => (
-  <svg 
-    className={className} 
-    viewBox="0 0 24 24" 
-    fill="currentColor"
-  >
-    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-  </svg>
-);
 
 const features = [
   { icon: Shield, text: "100% Privado" },
@@ -46,7 +37,7 @@ const FinalCTASection = () => {
               Crie novos <span className="text-primary-glow">matches</span>!
             </h2>
             <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-muted-foreground max-w-xl lg:max-w-2xl mx-auto leading-relaxed">
-              Baixe o Confexy agora e descubra desejos em comum.
+              Participe do teste fechado e seja um dos primeiros a usar o Confexy.
             </p>
           </div>
           
@@ -64,23 +55,31 @@ const FinalCTASection = () => {
           </div>
           
           {/* CTA Button */}
-          <div className="animate-slide-up px-4 sm:px-0" style={{ animationDelay: '0.6s' }}>
-            <a 
-              href="https://play.google.com/store/apps/details?id=com.confexy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block"
-            >
-              <Button 
-                size="lg"
-                className="bg-primary hover:bg-primary-glow text-primary-foreground px-8 sm:px-10 lg:px-12 py-6 sm:py-7 lg:py-8 text-lg sm:text-xl font-bold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105 mb-6 sm:mb-8 w-full sm:w-auto mt-8 sm:mt-12"
-              >
-                <GooglePlayIcon className="mr-2 sm:mr-3 h-6 w-6 sm:h-7 sm:w-7" />
-                Baixe agora na Play Store
-              </Button>
-            </a>
+          <div className="animate-slide-up px-4 sm:px-0 space-y-4" style={{ animationDelay: '0.6s' }}>
+            <BetaSignupDialog
+              trigger={
+                <Button 
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90 hover:text-primary-glow px-8 sm:px-10 lg:px-12 py-6 sm:py-7 lg:py-8 text-lg sm:text-xl font-bold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105 mb-6 sm:mb-8 w-full sm:w-auto mt-8 sm:mt-12"
+                >
+                  <TestTube2 className="mr-2 sm:mr-3 h-6 w-6 sm:h-7 sm:w-7" />
+                  Participar do Teste Fechado
+                </Button>
+              }
+            />
             
-
+            {/* Link para quem já está no teste */}
+            <p className="text-sm text-center text-white/70">
+              Já foi aprovado no teste?{" "}
+              <a 
+                href="https://play.google.com/store/apps/details?id=com.confexy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-white/80 underline font-semibold transition-colors"
+              >
+                Baixe na Play Store
+              </a>
+            </p>
           </div>
           
 
