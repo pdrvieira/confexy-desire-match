@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Play, TestTube2 } from "lucide-react";
+import { Download } from "lucide-react";
 import mainImage from "@/assets/realassets/main_image.png";
 import titleLogo from "@/assets/realassets/titlelogo.png";
-import BetaSignupDialog from "@/components/BetaSignupDialog";
 
 const HeroSection = () => {
   return (
@@ -46,19 +45,16 @@ const HeroSection = () => {
             {/* Buttons */}
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start pt-2 sm:pt-4 px-4 sm:px-0">
-                {/* Beta Signup Button */}
+                {/* Download Button - Primary CTA */}
                 <div className="flex justify-center lg:justify-start">
-                  <BetaSignupDialog
-                    trigger={
-                      <Button 
-                        size="lg"
-                        className="bg-white text-primary hover:bg-white/90 hover:text-primary-glow border-2 border-white px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-xl font-bold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105 w-full sm:w-auto min-w-[200px] sm:min-w-[240px]"
-                      >
-                        <TestTube2 className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
-                        Participar do Beta
-                      </Button>
-                    }
-                  />
+                  <Button 
+                    size="lg"
+                    className="bg-white text-primary hover:bg-white/90 hover:text-primary-glow border-2 border-white px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-xl font-bold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105 w-full sm:w-auto min-w-[200px] sm:min-w-[240px]"
+                    onClick={() => window.open('https://play.google.com/store/apps/details?id=com.confexy', '_blank', 'noopener,noreferrer')}
+                  >
+                    <Download className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
+                    Baixar Agora
+                  </Button>
                 </div>
                 
                 {/* Ver Como Funciona Button */}
@@ -77,17 +73,9 @@ const HeroSection = () => {
                 </div>
               </div>
               
-              {/* Link para quem já está no teste */}
-              <p className="text-sm text-center lg:text-left text-white/70 px-4 sm:px-0">
-                Já foi aprovado no teste?{" "}
-                <a 
-                  href="https://play.google.com/store/apps/details?id=com.confexy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-white/80 underline font-semibold transition-colors"
-                >
-                  Baixe na Play Store
-                </a>
+              {/* Grátis para download */}
+              <p className="text-sm text-center lg:text-left text-white/90 px-4 sm:px-0 font-medium">
+                ✨ Download grátis • Disponível na Play Store
               </p>
             </div>
           </div>

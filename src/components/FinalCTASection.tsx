@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Star, Shield, Heart, TestTube2 } from "lucide-react";
+import { Star, Shield, Heart, Download } from "lucide-react";
 import icone1 from "@/assets/realassets/icone1.png";
-import BetaSignupDialog from "@/components/BetaSignupDialog";
 
 
 const features = [
@@ -34,10 +33,10 @@ const FinalCTASection = () => {
           {/* Main Heading */}
           <div className="space-y-4 sm:space-y-6 animate-slide-up px-4 sm:px-0" style={{ animationDelay: '0.2s' }}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight">
-              Crie novos <span className="text-primary-glow">matches</span>!
+              Pronto para descobrir novos <span className="text-primary-glow">matches</span>?
             </h2>
             <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-muted-foreground max-w-xl lg:max-w-2xl mx-auto leading-relaxed">
-              Participe do teste fechado e seja um dos primeiros a usar o Confexy.
+              Baixe o Confexy agora e comece a explorar conexões de forma segura e divertida.
             </p>
           </div>
           
@@ -55,31 +54,15 @@ const FinalCTASection = () => {
           </div>
           
           {/* CTA Button */}
-          <div className="animate-slide-up px-4 sm:px-0 space-y-4" style={{ animationDelay: '0.6s' }}>
-            <BetaSignupDialog
-              trigger={
-                <Button 
-                  size="lg"
-                  className="bg-white text-primary hover:bg-white/90 hover:text-primary-glow px-8 sm:px-10 lg:px-12 py-6 sm:py-7 lg:py-8 text-lg sm:text-xl font-bold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105 mb-6 sm:mb-8 w-full sm:w-auto mt-8 sm:mt-12"
-                >
-                  <TestTube2 className="mr-2 sm:mr-3 h-6 w-6 sm:h-7 sm:w-7" />
-                  Participar do Teste Fechado
-                </Button>
-              }
-            />
-            
-            {/* Link para quem já está no teste */}
-            <p className="text-sm text-center text-white/70">
-              Já foi aprovado no teste?{" "}
-              <a 
-                href="https://play.google.com/store/apps/details?id=com.confexy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-white/80 underline font-semibold transition-colors"
-              >
-                Baixe na Play Store
-              </a>
-            </p>
+          <div className="animate-slide-up px-4 sm:px-0" style={{ animationDelay: '0.6s' }}>
+            <Button 
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90 hover:text-primary-glow px-8 sm:px-10 lg:px-12 py-6 sm:py-7 lg:py-8 text-lg sm:text-xl font-bold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+              onClick={() => window.open('https://play.google.com/store/apps/details?id=com.confexy', '_blank', 'noopener,noreferrer')}
+            >
+              <Download className="mr-2 sm:mr-3 h-6 w-6 sm:h-7 sm:w-7" />
+              Baixar na Play Store
+            </Button>
           </div>
           
 

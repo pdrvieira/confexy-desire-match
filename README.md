@@ -6,13 +6,14 @@
 
 ## 🚀 Visão Geral
 
-Esta é a landing page oficial do **Confexy**, um aplicativo social íntimo que ajuda pessoas a descobrirem desejos e fantasias compartilhados em um ambiente seguro e privado. A landing page apresenta as funcionalidades do app e fornece links para download na Google Play Store.
+Esta é a landing page oficial do **Confexy**, um aplicativo social íntimo que ajuda pessoas a descobrirem desejos e fantasias compartilhados em um ambiente seguro e privado. A landing page apresenta as funcionalidades do app e fornece link direto para download na Google Play Store.
 
 ### 🎯 Principais Características
 
 - **Design Moderno**: Interface elegante com glassmorphism e branding roxo
 - **Carrossel Interativo**: Apresenta screenshots e funcionalidades do app
 - **Layout Responsivo**: Otimizado para todos os dispositivos (mobile, tablet, desktop)
+- **CTA Otimizado**: Botão de download direto para Play Store
 - **Conformidade Legal**: Footer completo com política de privacidade, termos e links legais
 - **Performance Otimizada**: Carregamento rápido com animações suaves
 
@@ -160,11 +161,11 @@ A landing page inclui:
 
 ### Seções da Landing Page
 
-1. **Hero Section**: Apresentação principal com logo e CTAs
+1. **Hero Section**: Apresentação principal com logo e botão de download direto
 2. **Benefícios**: 4 principais benefícios do Confexy
 3. **Como Funciona**: 3 passos simples para usar o app
 4. **Screenshots**: Carrossel interativo com 5 telas do app
-5. **CTA Final**: Chamada final para download
+5. **CTA Final**: Chamada final para download na Play Store
 6. **Footer**: Links legais e informações de contato
 
 ### Interações
