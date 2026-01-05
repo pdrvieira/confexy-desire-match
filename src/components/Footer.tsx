@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-background border-t border-primary/10 py-8 sm:py-10 lg:py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          
+
           {/* Brand Section */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold text-foreground">Confexy</h3>
@@ -14,9 +14,9 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <span>Visite</span>
-              <a 
-                href="https://www.confexy.com.br" 
-                target="_blank" 
+              <a
+                href="https://www.confexy.com.br"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary-glow transition-colors font-medium"
               >
@@ -30,7 +30,7 @@ const Footer = () => {
             <h4 className="text-base font-semibold text-foreground">Legal</h4>
             <ul className="space-y-3">
               <li>
-                <a 
+                <a
                   href="https://legal.confexy.com.br/terms-conditions.html"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -41,7 +41,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://legal.confexy.com.br/privacy-policy.html"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -52,7 +52,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://legal.confexy.com.br/account-deletion.html"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -63,7 +63,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://legal.confexy.com.br/child-safety.html"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -79,17 +79,29 @@ const Footer = () => {
           {/* Download */}
           <div className="space-y-4">
             <h4 className="text-base font-semibold text-foreground">Download</h4>
-            <div className="space-y-3">
-              <a 
+            <div className="flex flex-col gap-3">
+              <a
                 href="https://play.google.com/store/apps/details?id=com.confexy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block"
               >
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                  alt="Disponível no Google Play" 
-                  className="h-12 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 transition-transform duration-300"
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                  alt="Disponível no Google Play"
+                  className="h-10 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 transition-transform duration-300"
+                />
+              </a>
+              <a
+                href="https://apps.apple.com/us/app/confexy/id6755045041"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                <img
+                  src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                  alt="Baixar na App Store"
+                  className="h-10 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 transition-transform duration-300"
                 />
               </a>
             </div>
@@ -102,7 +114,7 @@ const Footer = () => {
               <p className="text-sm text-muted-foreground">
                 Para suporte e dúvidas:
               </p>
-              <a 
+              <a
                 href="mailto:confexybr@gmail.com"
                 className="text-sm text-primary hover:text-primary-glow font-medium transition-colors inline-block"
               >
