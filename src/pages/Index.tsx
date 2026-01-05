@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -10,13 +11,22 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <>
-      <main className="min-h-screen bg-background">
+      <Navbar />
+      <main id="main-content" className="min-h-screen bg-background">
         <HeroSection />
-        <BenefitsSection />
-        <TestimonialsSection />
-        <HowItWorksSection />
+        <section id="beneficios">
+          <BenefitsSection />
+        </section>
+        <section id="depoimentos">
+          <TestimonialsSection />
+        </section>
+        <section id="como-funciona">
+          <HowItWorksSection />
+        </section>
         <ScreenshotsSection />
-        <FAQSection />
+        <section id="faq">
+          <FAQSection />
+        </section>
         <FinalCTASection />
       </main>
       <Footer />

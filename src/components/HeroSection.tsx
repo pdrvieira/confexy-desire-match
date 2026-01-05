@@ -1,96 +1,136 @@
+/**
+ * HeroSection - Confexy Landing Page
+ * 
+ * Design moderno e minimalista seguindo princípios de UX/UI:
+ * - Headline focado no benefício (não no nome da marca)
+ * - Um único CTA primário claro
+ * - Sem redundância de informações
+ * - Visual hierarchy clara
+ */
+
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import mainImage from "@/assets/realassets/main_image.png";
-import titleLogo from "@/assets/realassets/titlelogo.png";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden py-8 sm:py-12 lg:py-20">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-glow opacity-30" />
-      <div className="absolute top-10 sm:top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-primary-glow/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-      
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden pt-20 pb-12 lg:py-0">
+      {/* Background Effects - Sutis e elegantes */}
+      <div className="absolute inset-0 bg-gradient-glow opacity-20" />
+      <div
+        className="absolute top-1/4 -left-20 w-80 h-80 bg-primary/15 rounded-full blur-[100px]"
+      />
+      <div
+        className="absolute bottom-1/4 -right-20 w-96 h-96 bg-confexy-purple-light/10 rounded-full blur-[120px]"
+      />
+
       {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 items-center">
-          {/* Text Content */}
-          <div className="text-center lg:text-left space-y-8 sm:space-y-10 lg:space-y-12 animate-slide-up order-2 lg:order-1">
-            {/* Logo Section */}
-            <div className="space-y-6 sm:space-y-8">
-              <div className="flex justify-center lg:justify-start">
-                <img 
-                  src={titleLogo} 
-                  alt="Confexy Logo" 
-                  className="h-16 sm:h-20 lg:h-24 xl:h-28 w-auto"
-                />
-              </div>
-            </div>
-            
-            {/* Description */}
-            <div className="space-y-3 px-4 sm:px-0">
-              <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed font-light">
-                A forma mais íntima e divertida de se conectar. Deslize por fantasias secretas e descubra quem compartilha das mesmas vontades que você.
+      <div className="container mx-auto px-6 lg:px-8 relative z-10 max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* ============================================================= */}
+          {/* TEXT CONTENT */}
+          {/* ============================================================= */}
+          <div className="text-center lg:text-left space-y-8 order-2 lg:order-1">
+
+            {/* Headline - Focado no benefício, não na marca */}
+            <div className="space-y-4">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-tight">
+                Descubra desejos
+                <br />
+                <span className="text-white/90">em comum</span>
+              </h1>
+
+              {/* Subheadline - Proposta de valor clara */}
+              <p className="text-lg lg:text-xl text-white/70 max-w-md mx-auto lg:mx-0 leading-relaxed">
+                Explore fantasias de forma segura.
+                Só há match quando vocês dois querem o mesmo.
               </p>
-              <div className="flex justify-center lg:justify-start">
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-full text-green-400 text-sm font-medium">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                  </svg>
-                  Disponível apenas para Android
+            </div>
+
+            {/* CTA Section - Um único CTA claro */}
+            <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
+              <Button
+                size="lg"
+                className="
+                  group
+                  bg-white text-primary 
+                  hover:bg-white/95
+                  px-8 py-6 text-lg font-semibold 
+                  rounded-2xl
+                  shadow-xl shadow-black/10
+                  transition-all duration-200 
+                  hover:scale-[1.02]
+                "
+                onClick={() => window.open('https://play.google.com/store/apps/details?id=com.confexy', '_blank', 'noopener,noreferrer')}
+              >
+                Baixar grátis
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+
+              {/* Indicador sutil de plataforma */}
+              <span className="text-white/50 text-sm">
+                Android • iOS em breve
+              </span>
+            </div>
+
+            {/* Social Proof - Com avatares reais */}
+            <div className="flex items-center justify-center lg:justify-start gap-6 pt-4">
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-2">
+                  <img
+                    src="https://i.pravatar.cc/100?img=32"
+                    alt=""
+                    className="w-8 h-8 rounded-full border-2 border-white/20 object-cover"
+                  />
+                  <img
+                    src="https://i.pravatar.cc/100?img=47"
+                    alt=""
+                    className="w-8 h-8 rounded-full border-2 border-white/20 object-cover"
+                  />
+                  <img
+                    src="https://i.pravatar.cc/100?img=12"
+                    alt=""
+                    className="w-8 h-8 rounded-full border-2 border-white/20 object-cover"
+                  />
+                  <img
+                    src="https://i.pravatar.cc/100?img=25"
+                    alt=""
+                    className="w-8 h-8 rounded-full border-2 border-white/20 object-cover"
+                  />
+                </div>
+                <span className="text-white/60 text-sm">
+                  +1.000 usuários
                 </span>
               </div>
-            </div>
-            
-            {/* Buttons */}
-            <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start pt-2 sm:pt-4 px-4 sm:px-0">
-                {/* Download Button - Primary CTA */}
-                <div className="flex justify-center lg:justify-start">
-                  <Button 
-                    size="lg"
-                    className="bg-white text-primary hover:bg-white/90 hover:text-primary-glow border-2 border-white px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-xl font-bold shadow-glow hover:shadow-elegant transition-all duration-300 hover:scale-105 w-full sm:w-auto min-w-[200px] sm:min-w-[240px]"
-                    onClick={() => window.open('https://play.google.com/store/apps/details?id=com.confexy', '_blank', 'noopener,noreferrer')}
+              <div className="hidden sm:flex items-center gap-1">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <svg
+                    key={i}
+                    className="w-4 h-4 text-yellow-400 fill-current"
+                    viewBox="0 0 20 20"
                   >
-                    <Download className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
-                    Baixar Agora
-                  </Button>
-                </div>
-                
-                {/* Ver Como Funciona Button */}
-                <div className="flex justify-center lg:justify-start">
-                  <Button 
-                    variant="outline"
-                    size="lg"
-                    className="bg-white/5 border-2 border-white/40 text-white hover:bg-white hover:text-primary hover:border-white px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-xl font-bold backdrop-blur-sm transition-all duration-300 hover:scale-105 shadow-lg w-full sm:w-auto min-w-[200px] sm:min-w-[240px]"
-                    onClick={() => {
-                      const section = document.querySelector('#como-funciona');
-                      section?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    Ver Como Funciona
-                  </Button>
-                </div>
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                  </svg>
+                ))}
+                <span className="text-white/60 text-sm ml-1">4.8</span>
               </div>
-              
-              {/* Grátis para download */}
-              <p className="text-sm text-center lg:text-left text-white/90 px-4 sm:px-0 font-medium">
-                ✨ Download grátis • Disponível na Play Store
-              </p>
             </div>
           </div>
-          
-          {/* App Preview */}
-          <div className="relative flex justify-center lg:justify-end animate-fade-in order-1 lg:order-2" style={{ animationDelay: '0.3s' }}>
-            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
-              {/* Subtle glow effect */}
-              <div className="absolute inset-0 bg-gradient-glow rounded-3xl blur-2xl opacity-20" />
-              
-              {/* Main image - clean and simple */}
-              <img 
-                src={mainImage} 
-                alt="Confexy App Preview" 
-                className="relative z-10 w-full h-auto drop-shadow-lg rounded-2xl"
+
+          {/* ============================================================= */}
+          {/* APP PREVIEW */}
+          {/* ============================================================= */}
+          <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
+            <div className="relative w-full max-w-sm lg:max-w-md xl:max-w-lg">
+              {/* Glow sutil atrás da imagem */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent rounded-3xl blur-3xl opacity-50 scale-110" />
+
+              {/* Main image */}
+              <img
+                src={mainImage}
+                alt="Prévia do app Confexy mostrando a interface de match"
+                className="relative z-10 w-full h-auto drop-shadow-2xl"
               />
             </div>
           </div>
