@@ -26,44 +26,97 @@ const NAV_LINKS = [
     { label: "FAQ", href: "#faq", sectionId: "faq" },
 ] as const;
 
-// Altura da navbar para offset do scroll (desktop/mobile)
-const NAVBAR_HEIGHT_DESKTOP = 64;
-const NAVBAR_HEIGHT_MOBILE = 56;
+// Altura da navbar para offset do scroll
+const NAVBAR_HEIGHT = 72;
 
 // Scroll threshold para aplicar efeito glassmorphism
 const SCROLL_THRESHOLD = 16;
 
 // =============================================================================
 // CUSTOM HOOK: useScrollspy
-// Usa IntersectionObserver para detectar seção ativa (performance otimizada)
+// Calcula qual seção está mais próxima do topo do viewport
 // =============================================================================
 
 function useScrollspy(sectionIds: string[]) {
     const [activeSection, setActiveSection] = useState<string>("");
 
     useEffect(() => {
-        // Offset para considerar a navbar fixa
-        const rootMargin = `-${NAVBAR_HEIGHT_DESKTOP + 32}px 0px -60% 0px`;
+        const calculateActiveSection = () => {
+            // Se está no topo da página (Hero section), nenhum link fica ativo
+            // O Hero ocupa ~100vh, então usamos window.innerHeight como referência
+            const heroThreshold = window.innerHeight * 0.6; // 60% da altura do viewport
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveSection(entry.target.id);
+            if (window.scrollY < heroThreshold) {
+                if (activeSection !== "") {
+                    setActiveSection("");
+                }
+                return;
+            }
+
+            // Ponto de referência: logo abaixo da navbar
+            const referencePoint = NAVBAR_HEIGHT + 50;
+
+            let closestSection = "";
+            let closestDistance = Infinity;
+
+            sectionIds.forEach((id) => {
+                const element = document.getElementById(id);
+                if (!element) return;
+
+                const rect = element.getBoundingClientRect();
+                const sectionTop = rect.top;
+                const sectionBottom = rect.bottom;
+
+                // Se a seção está visível no viewport (parcialmente)
+                if (sectionBottom > referencePoint && sectionTop < window.innerHeight) {
+                    // Distância do topo da seção ao ponto de referência
+                    const distance = Math.abs(sectionTop - referencePoint);
+
+                    // Se o topo da seção está acima ou próximo do ponto de referência
+                    if (sectionTop <= referencePoint + 100 && distance < closestDistance) {
+                        closestDistance = distance;
+                        closestSection = id;
+                    }
+                }
+            });
+
+            // Se nenhuma seção foi encontrada, verificar qual está ocupando o viewport
+            if (!closestSection) {
+                sectionIds.forEach((id) => {
+                    const element = document.getElementById(id);
+                    if (!element) return;
+
+                    const rect = element.getBoundingClientRect();
+                    // Se o topo da seção já passou do ponto de referência
+                    if (rect.top <= referencePoint && rect.bottom > referencePoint) {
+                        closestSection = id;
                     }
                 });
-            },
-            { rootMargin, threshold: 0 }
-        );
+            }
 
-        // Observar todas as seções
-        sectionIds.forEach((id) => {
-            const element = document.getElementById(id);
-            if (element) observer.observe(element);
-        });
+            if (closestSection !== activeSection) {
+                setActiveSection(closestSection);
+            }
+        };
 
-        return () => observer.disconnect();
-    }, [sectionIds]);
+        // Calcular inicialmente
+        calculateActiveSection();
+
+        // Listener com throttle via requestAnimationFrame
+        let ticking = false;
+        const handleScroll = () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    calculateActiveSection();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [sectionIds, activeSection]);
 
     return activeSection;
 }
@@ -166,7 +219,7 @@ const Navbar = () => {
         const element = document.getElementById(sectionId);
 
         if (element) {
-            const offset = window.innerWidth >= 1024 ? NAVBAR_HEIGHT_DESKTOP : NAVBAR_HEIGHT_MOBILE;
+            const offset = NAVBAR_HEIGHT;
             const elementPosition = element.getBoundingClientRect().top + window.scrollY;
             const offsetPosition = elementPosition - offset - 16; // 16px extra padding
 
