@@ -7,6 +7,7 @@ import ScreenshotsSection from "@/components/ScreenshotsSection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
+import FloatingCTA from "@/components/FloatingCTA";
 
 const Index = () => {
   return (
@@ -29,6 +30,7 @@ const Index = () => {
         </section>
         <FinalCTASection />
       </main>
+      <FloatingCTA />
       <Footer />
     </>
   );
