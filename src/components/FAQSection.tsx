@@ -41,25 +41,25 @@ const FAQSection = () => {
         <div className="absolute top-1/4 right-4 sm:right-10 w-48 sm:w-72 h-48 sm:h-72 bg-primary rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 left-4 sm:left-10 w-64 sm:w-96 h-64 sm:h-96 bg-primary-glow rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
       </div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 animate-slide-up">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 sm:mb-6">
             <span className="text-primary">FAQ</span>
           </h2>
-          
+
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-xl lg:max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
             Dúvidas frequentes sobre o Confexy
           </p>
         </div>
-        
+
         {/* FAQ Accordion */}
         <div className="max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <Accordion type="single" collapsible className="space-y-4 sm:space-y-6">
             {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={faq.id} 
+              <AccordionItem
+                key={faq.id}
                 value={faq.id}
                 className="bg-gradient-card border-2 border-primary/20 rounded-2xl px-4 sm:px-6 lg:px-8 backdrop-blur-glass hover:border-primary/40 transition-all duration-300 hover:shadow-elegant animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -87,8 +87,8 @@ const FAQSection = () => {
           <p className="text-base sm:text-lg text-muted-foreground mb-4">
             Ainda tem dúvidas?
           </p>
-          <a 
-            href="mailto:contato@confexy.com.br"
+          <a
+            href="mailto:confexybr@gmail.com"
             className="inline-flex items-center gap-2 text-primary hover:text-primary-glow font-semibold transition-colors text-base sm:text-lg"
           >
             Entre em contato conosco

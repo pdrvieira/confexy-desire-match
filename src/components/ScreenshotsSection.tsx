@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import screenshot1 from "@/assets/realassets/screenshot-1.png";
 import screenshot2 from "@/assets/realassets/screenshot-2.png";
 import screenshot3 from "@/assets/realassets/screenshot-3.png";
@@ -53,9 +53,9 @@ const ScreenshotsSection = () => {
   // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
+      setCurrentIndex((prevIndex) =>
         prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1
       );
     }, 4000);
@@ -64,13 +64,13 @@ const ScreenshotsSection = () => {
   }, [isAutoPlaying]);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? screenshots.length - 1 : prevIndex - 1
     );
   };
@@ -86,7 +86,7 @@ const ScreenshotsSection = () => {
         <div className="absolute top-1/4 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-primary rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-primary-glow rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
       </div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-slide-up">
@@ -97,32 +97,31 @@ const ScreenshotsSection = () => {
             Uma interface intuitiva e elegante para explorar conexões de forma natural e divertida.
           </p>
         </div>
-        
+
         {/* Modern Carousel */}
         <div className="max-w-full sm:max-w-4xl lg:max-w-5xl mx-auto">
-          <div 
+          <div
             className="relative"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
           >
             {/* Main Carousel Container */}
             <div className="relative h-[600px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-card border border-primary/20 backdrop-blur-glass">
-              
+
               {/* Slides */}
               <div className="relative h-full">
                 {screenshots.map((screenshot, index) => (
                   <div
                     key={screenshot.id}
-                    className={`absolute inset-0 transition-all duration-700 ease-out transform ${
-                      index === currentIndex 
-                        ? 'opacity-100 scale-100 translate-x-0' 
-                        : index < currentIndex 
-                          ? 'opacity-0 scale-95 -translate-x-full' 
+                    className={`absolute inset-0 transition-all duration-700 ease-out transform ${index === currentIndex
+                        ? 'opacity-100 scale-100 translate-x-0'
+                        : index < currentIndex
+                          ? 'opacity-0 scale-95 -translate-x-full'
                           : 'opacity-0 scale-95 translate-x-full'
-                    }`}
+                      }`}
                   >
                     <div className="flex flex-col lg:flex-row h-full items-center justify-center gap-6 sm:gap-8 lg:gap-16 p-4 sm:p-6 lg:p-12 xl:p-16">
-                      
+
                       {/* Screenshot Image */}
                       <div className="relative flex-shrink-0 group order-1 lg:order-1">
                         <div className="absolute inset-0 bg-primary/20 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-50" />
@@ -134,7 +133,7 @@ const ScreenshotsSection = () => {
                           />
                         </div>
                       </div>
-                      
+
                       {/* Content */}
                       <div className="flex-1 text-center lg:text-left space-y-4 sm:space-y-6 max-w-sm sm:max-w-md lg:max-w-lg order-2 lg:order-2">
                         <div className="space-y-3 sm:space-y-4">
@@ -145,7 +144,7 @@ const ScreenshotsSection = () => {
                             {screenshot.description}
                           </p>
                         </div>
-                        
+
                         {/* Dynamic Feature Badge */}
                         <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 rounded-full border border-primary/20 hover:bg-primary/15 transition-colors duration-300">
                           <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-pulse" />
@@ -166,7 +165,7 @@ const ScreenshotsSection = () => {
               >
                 <ChevronLeft className="h-6 w-6 text-white group-hover:text-primary transition-colors" />
               </button>
-              
+
               <button
                 onClick={nextSlide}
                 className="absolute right-4 lg:right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
@@ -181,26 +180,25 @@ const ScreenshotsSection = () => {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'bg-primary scale-125' 
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
+                      ? 'bg-primary scale-125'
                       : 'bg-white/30 hover:bg-white/50'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
 
             {/* Progress Bar */}
             <div className="mt-6 w-full bg-white/10 rounded-full h-1 overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-gradient-to-r from-primary to-primary-glow transition-all duration-300 ease-out"
                 style={{ width: `${((currentIndex + 1) / screenshots.length) * 100}%` }}
               />
             </div>
           </div>
         </div>
-        
-        
+
+
       </div>
     </section>
   );

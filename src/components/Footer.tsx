@@ -116,7 +116,7 @@ const Footer = () => {
         <div className="mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8 border-t border-primary/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
             <p className="text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
-              © 2025 Confexy. Todos os direitos reservados.
+              © {new Date().getFullYear()} Confexy. Todos os direitos reservados.
             </p>
             <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/5 rounded-full border border-primary/10">
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full" />
