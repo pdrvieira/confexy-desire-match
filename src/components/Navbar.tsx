@@ -388,7 +388,7 @@ const Navbar = () => {
                                 transition-all duration-200
                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30
                                 ${isMobileMenuOpen
-                                    ? "bg-white/10 text-white"
+                                    ? "bg-transparent text-white z-[80] relative"
                                     : "text-white/80 hover:text-white hover:bg-white/5"
                                 }
                             `}
@@ -421,8 +421,21 @@ const Navbar = () => {
             </nav>
 
             {/* ===================================================================== */}
-            {/* MOBILE MENU OVERLAY */}
+            {/* MOBILE SIDEBAR MENU */}
             {/* ===================================================================== */}
+
+            {/* Backdrop Overlay */}
+            <div
+                className={`
+                    fixed inset-0 z-[60] lg:hidden bg-black/60 backdrop-blur-sm
+                    transition-opacity duration-300
+                    ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+                `}
+                onClick={closeMobileMenu}
+                aria-hidden="true"
+            />
+
+            {/* Sidebar Container */}
             <div
                 id="mobile-menu"
                 ref={mobileMenuRef}
@@ -430,111 +443,94 @@ const Navbar = () => {
                 aria-modal="true"
                 aria-label="Menu de navegação"
                 className={`
-          fixed inset-0 z-40 lg:hidden
-          transition-all duration-300 ease-out
-          ${isMobileMenuOpen
-                        ? "opacity-100 pointer-events-auto"
-                        : "opacity-0 pointer-events-none"
-                    }
-        `}
-                style={{
-                    paddingTop: "env(safe-area-inset-top, 0px)",
-                }}
+                    fixed top-0 right-0 bottom-0 z-[70] lg:hidden
+                    w-[85vw] max-w-sm h-full
+                    flex flex-col
+                    bg-[#0A0A0A] border-l border-white/10
+                    transition-all duration-300 cubic-bezier(0.16, 1, 0.3, 1)
+                    ${isMobileMenuOpen ? "translate-x-0 shadow-2xl shadow-black" : "translate-x-full shadow-none"}
+                `}
             >
-                {/* Backdrop com blur */}
-                <div
-                    className={`
-            absolute inset-0
-            mobile-menu-backdrop
-            transition-opacity duration-300
-            ${isMobileMenuOpen ? "opacity-100" : "opacity-0"}
-          `}
-                    onClick={closeMobileMenu}
-                    aria-hidden="true"
-                />
+                {/* Background Effects */}
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-confexy-purple-dark/10 pointer-events-none" />
 
-                {/* Menu Content Container */}
-                <div
-                    className={`
-            absolute inset-x-0 top-14 bottom-0
-            flex flex-col
-            transition-all duration-300 ease-out
-            ${isMobileMenuOpen
-                            ? "translate-y-0 opacity-100"
-                            : "-translate-y-4 opacity-0"
-                        }
-          `}
-                >
-                    {/* Navigation Links */}
-                    <div className="flex-1 flex flex-col items-center justify-center gap-2 px-6 py-8 overflow-y-auto">
-                        {NAV_LINKS.map((link) => {
-                            const isActive = activeSection === link.sectionId;
-                            return (
-                                <button
-                                    key={link.href}
-                                    onClick={() => scrollToSection(link.href, true)}
-                                    className={`
-                                        w-full max-w-xs py-4 px-6
-                                        text-xl font-medium text-center
-                                        transition-colors duration-200
-                                        focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded-xl
-                                        ${isActive
-                                            ? "text-white"
-                                            : "text-white/50 hover:text-white/80"
-                                        }
-                                    `}
-                                    aria-current={isActive ? "page" : undefined}
-                                >
+                {/* Sidebar Header */}
+                <div className="relative z-10 flex items-center justify-between px-6 h-20 shrink-0 border-b border-white/5">
+                    <span className="text-lg font-bold text-white tracking-widest uppercase opacity-90">
+                        Menu
+                    </span>
+
+                    {/* Botão de fechar redundante (UX) */}
+                    <button
+                        onClick={closeMobileMenu}
+                        className="p-2 -mr-2 text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/10"
+                        aria-label="Fechar menu"
+                    >
+                        <X className="w-6 h-6" />
+                    </button>
+                </div>
+
+                {/* Sidebar Links */}
+                <nav className="relative z-10 flex-1 px-6 py-8 overflow-y-auto space-y-6">
+                    {NAV_LINKS.map((link) => {
+                        const isActive = activeSection === link.sectionId;
+                        return (
+                            <button
+                                key={link.href}
+                                onClick={() => scrollToSection(link.href, true)}
+                                className={`
+                                    w-full flex items-center justify-between text-left group
+                                    py-2
+                                    transition-colors duration-200
+                                `}
+                            >
+                                <span className={`
+                                    text-2xl font-bold tracking-tight
+                                    ${isActive ? "text-white" : "text-white/40 group-hover:text-white"}
+                                `}>
                                     {link.label}
-                                </button>
-                            );
-                        })}
-                    </div>
+                                </span>
 
-                    {/* Mobile CTAs */}
-                    <div className="p-6 pb-8 border-t border-white/10 space-y-3 bg-gradient-to-t from-background to-transparent">
-                        {/* Play Store */}
+                                {isActive && (
+                                    <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(124,58,237,0.8)]" />
+                                )}
+                            </button>
+                        );
+                    })}
+                </nav>
+
+                {/* Sidebar Footer / CTAs */}
+                <div className="relative z-10 p-6 pb-8 border-t border-white/10 bg-[#0F0F0F]">
+                    <p className="text-xs text-white/40 font-medium mb-4 uppercase tracking-wider">
+                        Baixe o App
+                    </p>
+
+                    <div className="space-y-3">
                         <Button
-                            size="lg"
-                            className="w-full bg-white text-primary hover:bg-white/95 font-bold py-5 text-base rounded-2xl shadow-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                            className="w-full h-12 bg-white hover:bg-white/90 text-black border-0 rounded-xl flex items-center justify-center gap-2 shadow-sm font-semibold"
                             onClick={() => {
                                 closeMobileMenu();
-                                window.open(
-                                    "https://play.google.com/store/apps/details?id=com.confexy",
-                                    "_blank",
-                                    "noopener,noreferrer"
-                                );
+                                window.open("https://play.google.com/store/apps/details?id=com.confexy", "_blank");
                             }}
                         >
-                            <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <svg className="h-5 w-5 text-black" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                             </svg>
                             Play Store
                         </Button>
 
-                        {/* App Store */}
                         <Button
-                            size="lg"
-                            className="w-full bg-white/10 text-white border border-white/20 hover:bg-white/15 font-bold py-5 text-base rounded-2xl backdrop-blur-sm transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                            className="w-full h-12 bg-[#1A1A1A] hover:bg-[#252525] text-white border border-white/10 rounded-xl flex items-center justify-center gap-2 shadow-sm font-semibold"
                             onClick={() => {
                                 closeMobileMenu();
-                                window.open(
-                                    "https://apps.apple.com/us/app/confexy/id6755045041",
-                                    "_blank",
-                                    "noopener,noreferrer"
-                                );
+                                window.open("https://apps.apple.com/us/app/confexy/id6755045041", "_blank");
                             }}
                         >
-                            <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                             </svg>
                             App Store
                         </Button>
-
-                        {/* Indicador de disponibilidade */}
-                        <p className="text-center text-xs text-white/40 mt-3">
-                            Disponível para Android e iOS
-                        </p>
                     </div>
                 </div>
             </div>
@@ -543,66 +539,22 @@ const Navbar = () => {
             {/* STYLES */}
             {/* ===================================================================== */}
             <style>{`
-        /* Navbar - Estado inicial (topo da página) */
-        .navbar-top {
-          background: transparent;
-        }
+                .navbar-top { background: transparent; }
+                
+                .navbar-scrolled {
+                    background: rgba(10, 10, 10, 0.7);
+                    backdrop-filter: blur(24px);
+                    -webkit-backdrop-filter: blur(24px);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                }
 
-        /* Navbar - Estado após scroll (glassmorphism) */
-        .navbar-scrolled {
-          background: hsl(240 10% 3.9% / 0.75);
-          backdrop-filter: blur(16px) saturate(180%);
-          -webkit-backdrop-filter: blur(16px) saturate(180%);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-          box-shadow: 
-            0 4px 30px rgba(0, 0, 0, 0.1),
-            0 1px 0 rgba(255, 255, 255, 0.02) inset;
-        }
+                @supports not (backdrop-filter: blur(24px)) {
+                    .navbar-scrolled { background: rgba(10, 10, 10, 0.95); }
+                }
 
-        /* Fallback para browsers que não suportam backdrop-filter */
-        @supports not (backdrop-filter: blur(16px)) {
-          .navbar-scrolled {
-            background: hsl(240 10% 3.9% / 0.95);
-          }
-        }
-
-        /* Mobile menu backdrop */
-        .mobile-menu-backdrop {
-          background: hsl(240 10% 3.9% / 0.95);
-          backdrop-filter: blur(20px) saturate(180%);
-          -webkit-backdrop-filter: blur(20px) saturate(180%);
-        }
-
-        /* Fallback para backdrop no mobile */
-        @supports not (backdrop-filter: blur(20px)) {
-          .mobile-menu-backdrop {
-            background: hsl(240 10% 3.9% / 0.98);
-          }
-        }
-
-        /* Animação de entrada para links do menu mobile */
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(12px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        /* Remove outline padrão mas mantém focus visible */
-        button:focus {
-          outline: none;
-        }
-
-        /* Focus visible ring para acessibilidade */
-        button:focus-visible {
-          outline: none;
-          box-shadow: 0 0 0 2px hsl(262 83% 58% / 0.5);
-        }
-      `}</style>
+                /* Sidebar Animation Handling */
+                /* As transições agora são controladas diretamente pelas classes Tailwind */
+            `}</style>
         </>
     );
 };
